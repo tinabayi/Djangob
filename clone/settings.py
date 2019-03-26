@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'clone.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'instagram',
+        'NAME': 'instagramapp',
         'USER': 'wecode',
     'PASSWORD':'bayizere',
     }
@@ -112,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Africa/Nairobi'
+TIME_ZONE = 'Africa/Kigali'
 
 USE_I18N = True
 
@@ -129,3 +129,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+LOGIN_REDIRECT_URL='welcome'
