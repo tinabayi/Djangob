@@ -3,29 +3,39 @@ from django.contrib.auth.models import User
 # Create your models here
 
 class Profile(models.Model):
-    profile_photo= models.CharField(max_length =60)
-    user= models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField()
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=30,null=True)
+    last_name = models.CharField(max_length=30,null=True)
+    prof_image = models.ImageField(upload_to = 'images/',null=True)
+    bio = models.CharField(max_length =200)
+
+    def __str__(self):
+        return self.first_name
 
     def save_profile(self):
-        self.save() 
+        self.save()
+
     def delete_profile(self):
-        self.delete() 
-    def update_profile(self):
-        self.update()           
+        self.delete()
+
     @classmethod
     def get_profile(cls):
-        profiles = Profile.objects.all()
-        return images
-        
+        profiles = cls.objects.all()
+        return profiles
+
+    @classmethod
+    def search_by_username(cls,search_term):
+        profiles = cls.objects.filter(first_name__icontains=search_term)
+        return profiles
+
 class Image(models.Model):
-    image = models.ImageField(upload_to = 'instagram/')
+    image = models.ImageField(upload_to = 'images/')
     image_name = models.CharField(max_length =30)
     image_caption = models.CharField(max_length =30)
     comments= models.CharField(max_length =30)
     likes = models.CharField(max_length =30)
     user=models.ForeignKey(User)
-    profile=models.ForeignKey(Profile,on_delete=models.CASCADE)
+    profile=models.ForeignKey(Profile,on_delete=models.CASCADE, null=True)
 
     def save_image(self):
         self.save() 
