@@ -4,4 +4,4 @@ from django import forms
 class NewImageForm(forms.ModelForm):
     class Meta:
         model = Image
-        exclude = ['comments','likes','profile' ]
+        exclude = ['comments','likes','editor','user','profile' ]

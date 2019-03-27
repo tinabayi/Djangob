@@ -3,6 +3,21 @@
 {% block content %}
 {{block.super}}
 
+<div class="container">
+
+    <div class="row">
+    {% for item in images %}
+      <img src="{{item.image.url}}"  class="img-responsive" alt="">
+      <h1 class="text-center">{{item.image_name}}</h1>
+      {% endfor %}
+    </div>
+ 
+    <div class="row">
+      
+    </div>
+ 
+
+
 {% endblock %}
 
 

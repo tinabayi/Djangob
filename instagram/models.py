@@ -2,26 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here
 
-
-class Image(models.Model):
-    image = models.ImageField(upload_to = 'instagram/')
-    image_name = models.CharField(max_length =30)
-    image_caption = models.CharField(max_length =30)
-    comments= models.CharField(max_length =30)
-    likes = models.CharField(max_length =30)
-    profile=models.ForeignKey(User, on_delete=models.CASCADE)
-
-
-    def save_image(self):
-        self.save() 
-    def delete_image(self):
-        self.delete() 
-    def update_caption(self):
-        self.update()           
-
 class Profile(models.Model):
     profile_photo= models.CharField(max_length =60)
-    users= models.OneToOneField(User, on_delete=models.CASCADE)
+    user= models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField()
 
     def save_profile(self):
@@ -30,6 +13,33 @@ class Profile(models.Model):
         self.delete() 
     def update_profile(self):
         self.update()           
+    @classmethod
+    def get_profile(cls):
+        profiles = Profile.objects.all()
+        return images
+        
+class Image(models.Model):
+    image = models.ImageField(upload_to = 'instagram/')
+    image_name = models.CharField(max_length =30)
+    image_caption = models.CharField(max_length =30)
+    comments= models.CharField(max_length =30)
+    likes = models.CharField(max_length =30)
+    user=models.ForeignKey(User)
+    profile=models.ForeignKey(Profile,on_delete=models.CASCADE)
+
+    def save_image(self):
+        self.save() 
+    def delete_image(self):
+        self.delete() 
+    def update_caption(self):
+        self.update()           
+    @classmethod
+    def get_image(cls):
+        images = Image.objects.all()
+        return images
+
+
+
 
 
 class Comment(models.Model):
