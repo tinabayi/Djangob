@@ -8,6 +8,7 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=30,null=True)
     prof_image = models.ImageField(upload_to = 'images/',null=True)
     bio = models.CharField(max_length =200)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.first_name

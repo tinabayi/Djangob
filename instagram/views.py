@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
-from .models import Image
+from .models import Image,Profile
 from django.http  import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .forms import NewImageForm
+from .forms import NewImageForm,ProfileForm
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def welcome(request):
@@ -52,6 +52,15 @@ def profile(request):
     return render(request, 'profile.html', {"form": form})
 
 
+@login_required(login_url='/accounts/login/')
+def viewprofile(request):
+
+    current_user = request.user
+    current_user.id
+    profile = Profile.objects.get(user=current_user.id)
+    
+    return render(request, 'viewprofile.html',{"profile":profile})
+    
 
 def image(request):
     current_user = request.user
