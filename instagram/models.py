@@ -54,7 +54,7 @@ class Image(models.Model):
 
 
 class Comment(models.Model):
-    comments = models.TextField()
+    comments = models.CharField(max_length =30)
     image=models.ForeignKey(Image, on_delete=models.CASCADE)
 
 

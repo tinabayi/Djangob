@@ -8,12 +8,11 @@
     <div class="row">
     {% for item in images %}
      <img src="{{item.image.url}}" alt="">
-      <h1 class="text-center">{{item.image_name}}</h1>
-      <p>{{item.image_caption}}</p>
-      <a href="{%url 'comments'%}">Comments</a>
+     
+     <button><a href="{%url 'comments'%}">Comments</a></button>
       {% endfor %}
-    </div>
- 
+    
+ </div>
  
  </div>
 
