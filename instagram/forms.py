@@ -9,7 +9,7 @@ class NewImageForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user','profile' ]
+        exclude = ['user','last_name' ]
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
