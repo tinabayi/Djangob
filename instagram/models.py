@@ -62,7 +62,11 @@ class Comment(models.Model):
         self.save() 
     def delete_comment(self):
         self.delete() 
-     
+    @classmethod
+    def get_comment(cls):
+        comments = Comment.objects.all()
+        return comments
+
 
    
 class like(models.Model):

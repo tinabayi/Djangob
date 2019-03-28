@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Image,Profile
 from django.http  import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .forms import NewImageForm,ProfileForm
+from .forms import NewImageForm,ProfileForm,CommentForm
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def welcome(request):
@@ -78,7 +78,7 @@ def image(request):
 def comments(request):
     current_user = request.user
     if request.method == 'POST':
-        form = CommentsForm(request.POST, request.FILES)
+        form = CommentForm(request.POST, request.FILES)
         if form.is_valid():
             comments = form.save(commit=False)
             comments.user = current_user
@@ -87,7 +87,7 @@ def comments(request):
             return redirect(welcome)
 
     else:
-        form = CommentsForm()
+        form = CommentForm()
     return render(request, 'comment.html', {"form": form})
 
 
